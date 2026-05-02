@@ -1,4 +1,4 @@
-const API_ENDPOINT = import.meta.env.VITE_ZP_API_ENDPOINT || 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
+const API_ENDPOINT = import.meta.env.VITE_ZP_API_ENDPOINT || 'https://open.bigmodel.cn/api/coding/paas/v4/chat/completions'
 const MODEL = 'glm-5-turbo'
 
 function sanitize(input: string): string {
