@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import type { EditorRole, ReviewState } from '../types'
-import { callGLM } from '../services/glmApi'
+import { callRoleReview } from '../services/glmApi'
 import { nineGridPrompt } from '../prompts/nineGrid'
 import { sourcingPrompt } from '../prompts/sourcing'
 import { positioningPrompt } from '../prompts/positioning'
@@ -34,7 +34,7 @@ export function useReview() {
 
     const promises = roles.map(async (role) => {
       try {
-        const content = await callGLM(PROMPT_MAP[role], article)
+        const content = await callRoleReview(role, PROMPT_MAP[role], article)
         setReviews(prev => ({ ...prev, [role]: { status: 'done', content } }))
       } catch (err) {
         const message = err instanceof Error ? err.message : '未知錯誤'

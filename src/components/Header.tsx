@@ -1,18 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { getApiKey, setApiKey } from '../services/glmApi'
 
 export default function Header() {
-  const [key, setKey] = useState('')
-  const [showInput, setShowInput] = useState(false)
-  const [saved, setSaved] = useState(false)
-
-  useEffect(() => {
-    const stored = getApiKey()
-    if (stored) {
-      setKey(stored)
-      setSaved(true)
-    }
-  }, [])
+  const storedKey = getApiKey()
+  const [key, setKey] = useState(storedKey)
+  const [showInput, setShowInput] = useState(!storedKey)
+  const [saved, setSaved] = useState(Boolean(storedKey))
 
   const handleSave = () => {
     if (key.trim()) {
